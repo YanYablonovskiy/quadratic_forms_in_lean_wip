@@ -1,0 +1,19 @@
+# macOS Finder
+.DS_Store
+
+# Lean / Lake build artifacts
+# (prior to v4.3.0-rc2)
+build/
+lake-packages/
+lakefile.olean
+
+# (v4.3.0-rc2 and later)
+.lake/
+
+# Editor dirs
+.vscode/
+.idea/
+
+# Swap / backup files
+*~
+*.swp
