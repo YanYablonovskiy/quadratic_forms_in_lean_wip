@@ -50,18 +50,22 @@ example : LinearMap.toMatrix₂ b b (q2.toBilin b) = !![sorry] := by
 
 #check 1+2+3
 
+
+/- Check the type of a matrix -/
 #check !![1, 2; 3, 4]
 
-example :
+example := !![1, 2; 3, 4]
 
+
+/- Some other ways to evaluate a matrix -/
 #eval Matrix.of ![![1, 2], ![3, 4]]
 #eval Matrix.of fun (i : Fin 2) (j : Fin 2) => ([[1, 2], [3, 4]][i]!)[j]!
 #eval Matrix.of fun (i : Fin 2) (j : Fin 2) => ([[1, 2], [3, 4]][i]!)[j]!
 
+
+/- Evaluate the double of a quadratic forms  -/
 #eval (q2 + q2) (1 : ZMod 2)
-
 #eval (q2 + q2) (0 : ZMod 2)
-
 #eval (q2 + q2) 1
 
 
@@ -70,6 +74,7 @@ example :
 #eval QuadraticMap.sq (3 : ZMod 5)
 -/
 
+/- Evaluate a quadratic map -/
 #eval QuadraticMap.sq (R := ZMod 5) (3 : ZMod 5)
 
 
