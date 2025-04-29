@@ -1,6 +1,4 @@
 /-
-E16_ZMod2.lean
-
 A simple quadratic form representing x ↦ x^2
 over the finite field ZMod 2,
 built with the Mathlib4 QuadraticMap API.
@@ -17,6 +15,7 @@ def squareForm {R : Type*} [CommRing R] : QuadraticForm R R :=
     (by intros x y z; simp [polar]; ring)
     (by intros a x y; simp [polar]; ring)
 
+
 /-- Instantiate the form at `ZMod 2`. -/
 def squareZMod2 : QuadraticForm (ZMod 2) (ZMod 2) :=
   squareForm
@@ -25,6 +24,18 @@ def squareZMod2 : QuadraticForm (ZMod 2) (ZMod 2) :=
 theorem squareZMod2_toFun (x : ZMod 2) : squareZMod2 x = x * x :=
   rfl
 
+
+
+-- This helps us to see how things print!
+set_option pp.numericTypes true
+
+-- #check CharTwo.two_eq_zero
+-- #check two_is
+
+-- #check
+
+
+
 /--
 In characteristic 2 the bilinear (polar) form attached to
 `squareZMod2` is identically zero.
@@ -32,6 +43,10 @@ In characteristic 2 the bilinear (polar) form attached to
 theorem polar_squareZMod2 (x y : ZMod 2) : polar squareZMod2 x y = 0 := by
   simp [polar]
   ring_nf
+  rw [CharTwo.two_eq_zero (R := ZMod 2)]
+  ring
+
+
 
 -- Quick `#eval` tests:
 #eval squareZMod2 0             -- 0
