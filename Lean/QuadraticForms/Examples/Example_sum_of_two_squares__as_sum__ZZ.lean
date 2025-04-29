@@ -25,10 +25,13 @@ def sumOfTwoSquares {R : Type*} [CommRing R] : QuadraticForm R (R × R) :=
     sumOfTwoSquares p = squareForm p.1 + squareForm p.2 :=
 rfl
 
-/-- Unfold both `squareForm` and `sumOfTwoSquares`. -/
+/- Unfold both `squareForm` and `sumOfTwoSquares`. -/
+/-
 @[simp] theorem sumOfTwoSquares_expand {R : Type*} [CommRing R] (x y : R) :
     sumOfTwoSquares (x, y) = x * x + y * y := by
     simp [sumOfTwoSquares_toFun]
+-/
+
 
 /-- Instantiate on `Int`. -/
 def sumOfTwoSquaresInt : QuadraticForm Int (Int × Int) := sumOfTwoSquares
