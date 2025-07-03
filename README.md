@@ -22,5 +22,5 @@ lake build
 Requires [Lean 4](https://leanprover-community.github.io/get_started.html) and [Mathlib4](https://github.com/leanprover-community/mathlib4).
 
 
-## Refernces
+## References
 - Cassels, "Rational Quadratic Forms", https://archive.org/details/rationalquadrati0000cass/page/n5/mode/2up
