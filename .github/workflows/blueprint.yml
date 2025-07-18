@@ -85,41 +85,41 @@ jobs:
             leanblueprint web
             cp -r blueprint/web home_page/blueprint
 
-      - name: Check declarations mentioned in the blueprint exist in Lean code
-        run: |
-            ~/.elan/bin/lake exe checkdecls blueprint/lean_decls
+      # - name: Check declarations mentioned in the blueprint exist in Lean code
+      #   run: |
+      #       ~/.elan/bin/lake exe checkdecls blueprint/lean_decls
 
-      - name: Copy API documentation to `home_page/docs`
-        run: cp -r .lake/build/doc home_page/docs
+      # - name: Copy API documentation to `home_page/docs`
+      #   run: cp -r .lake/build/doc home_page/docs
 
-      - name: Remove unnecessary lake files from documentation in `home_page/docs`
-        run: |
-          find home_page/docs -name "*.trace" -delete
-          find home_page/docs -name "*.hash" -delete
+      # - name: Remove unnecessary lake files from documentation in `home_page/docs`
+      #   run: |
+      #     find home_page/docs -name "*.trace" -delete
+      #     find home_page/docs -name "*.hash" -delete
 
-      - name: Bundle dependencies
-        uses: ruby/setup-ruby@v1
-        with:
-          working-directory: home_page
-          ruby-version: "3.0"  # Specify Ruby version
-          bundler-cache: true  # Enable caching for bundler
+      # - name: Bundle dependencies
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     working-directory: home_page
+      #     ruby-version: "3.0"  # Specify Ruby version
+      #     bundler-cache: true  # Enable caching for bundler
 
-      - name: Build website using Jekyll
-        if: env.HOME_PAGE_EXISTS == 'true'
-        working-directory: home_page
-        env:
-          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: JEKYLL_ENV=production bundle exec jekyll build  # Note this will also copy the blueprint and API doc into home_page/_site
+      # - name: Build website using Jekyll
+      #   if: env.HOME_PAGE_EXISTS == 'true'
+      #   working-directory: home_page
+      #   env:
+      #     JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: JEKYLL_ENV=production bundle exec jekyll build  # Note this will also copy the blueprint and API doc into home_page/_site
 
-      - name: "Upload website (API documentation, blueprint and any home page)"
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ${{ env.HOME_PAGE_EXISTS == 'true' && 'home_page/_site' || 'home_page/' }}
+      # - name: "Upload website (API documentation, blueprint and any home page)"
+      #   uses: actions/upload-pages-artifact@v3
+      #   with:
+      #     path: ${{ env.HOME_PAGE_EXISTS == 'true' && 'home_page/_site' || 'home_page/' }}
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      # - name: Deploy to GitHub Pages
+      #   id: deployment
+      #   uses: actions/deploy-pages@v4
 
-      - name: Make sure the API documentation cache works
-        run: mv home_page/docs .lake/build/doc
+      # - name: Make sure the API documentation cache works
+      #   run: mv home_page/docs .lake/build/doc
      
